@@ -1,0 +1,19 @@
+--- #YAML:1.0
+name:                POE-Component-Supervisor
+version:             0.01
+abstract:            ~
+license:             ~
+author:              ~
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
+    Log::Dispatch::Config::TestLog: 0
+    MooseX::LogDispatch:           0
+    MooseX::POE:                   0
+    MooseX:Types::Set::Object:     0
+    POE:                           0
+    Test::use::ok:                 0
+    Tie::RefHash:                  0
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

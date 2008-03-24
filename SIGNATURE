@@ -1,0 +1,37 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.55.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 62a088a4b66f66177fcbd8283e4f8606a2cb97b7 MANIFEST
+SHA1 ddb918d4e02cc06f4b9fe77adeca65403f8fdd56 MANIFEST.SKIP
+SHA1 6cc86da260575ea3bbf32cc4d764d4212310d350 META.yml
+SHA1 cbe70ce6b8fd11e32961c9249b1674c0d3c0fe2d Makefile.PL
+SHA1 7f48da43965a7a622e5fd40c044d17f2a9ac79a1 lib/POE/Component/Supervisor.pm
+SHA1 03b4038c1d5994f1e69e0fc7fdc9b1fa1c41303b lib/POE/Component/Supervisor/Handle.pm
+SHA1 2f1f47d18c5583a62ff221d95871adc1a7e05478 lib/POE/Component/Supervisor/Handle/Proc.pm
+SHA1 9386610d1854bdf37fe36cab412ae10f56eec47e lib/POE/Component/Supervisor/LogDispatch.pm
+SHA1 88001f0b7916a9c7969f22943462548a8725d16f lib/POE/Component/Supervisor/Supervised.pm
+SHA1 865c996606ad766e1c484fdccad884a3c844e447 lib/POE/Component/Supervisor/Supervised/Proc.pm
+SHA1 629df3fd4a8c78b3daab7094f84f71387719a01b t/01_load.t
+SHA1 9e53695133d4a25fbdc306dbd44c4da5ec460cbd t/02_basic.t
+SHA1 25b63de929874de3abd6c52464edc02a9ec8c788 t/03_stubborn.t
+SHA1 a37978dd67d05837c35b5a5634edef49a771c0c3 t/04_global_restart_policy.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.7 (Darwin)
+
+iD8DBQFH49wfVCwRwOvSdBgRAthqAJ9ROwTXWSlASX8fV8V1H3081qWHigCgwhUH
+dvdFbYVppHJ9xl2P8/yfxJE=
+=3H+5
+-----END PGP SIGNATURE-----
