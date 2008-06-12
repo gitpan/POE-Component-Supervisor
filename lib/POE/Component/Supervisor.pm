@@ -8,7 +8,7 @@ use Moose::Util::TypeConstraints;
 use POE::Component::Supervisor::Supervised;
 use POE::Component::Supervisor::Handle;
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 with qw(
     MooseX::POE::Aliased
@@ -23,9 +23,7 @@ sub run {
 }
 
 # by default when all the children die we exit as well
-has '+alias' => (
-    default => undef,
-);
+sub _build_alias { undef }
 
 has restart_policy => (
     isa => enum(__PACKAGE__ . "::RestartPolicy" => qw(one all rest)),
@@ -394,7 +392,7 @@ anything the session will also close. See L<POE>, and L<MooseX::POE::Aliased>.
 
 =item alias
 
-See L<MooseX::POE::ALliased>.
+See L<MooseX::POE::Aliased>.
 
 This defaults to C<undef>, unlike the role, so that a supervisor session will
 close automatically once it has no more children to supervise.
