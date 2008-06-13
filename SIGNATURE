@@ -14,28 +14,28 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 991dec2e76ab72276f6cbe76f52ffb74262c3628 Changes
+SHA1 e0fd3d0ac5ed19f8fab215dbd040bac030af021f Changes
 SHA1 794d0d11dd8b52d5127b1063b34928dceed6060f MANIFEST
 SHA1 62b822b4217c1540ce823341e659f66ab9e9632a MANIFEST.SKIP
-SHA1 f4b6d1ad44ee6fe9a079c11cb920e5225126f7de META.yml
+SHA1 ece5c4ea6e0425f9d5ebfe3c4afa00cc51ff5f84 META.yml
 SHA1 c2a702bffdd0e5409cad6981a5dd45f62b9af366 Makefile.PL
-SHA1 704de6d9d5551b603153611ac412be1e29794177 lib/POE/Component/Supervisor.pm
+SHA1 b380ec0992963cd8297b96eca8f0f7e54b54385e lib/POE/Component/Supervisor.pm
 SHA1 03b4038c1d5994f1e69e0fc7fdc9b1fa1c41303b lib/POE/Component/Supervisor/Handle.pm
-SHA1 2f1f47d18c5583a62ff221d95871adc1a7e05478 lib/POE/Component/Supervisor/Handle/Proc.pm
+SHA1 0ce89e482fe0ff87f78daeaf9984bb70c15ced5a lib/POE/Component/Supervisor/Handle/Proc.pm
 SHA1 5a62d08ace1746d8cb5696beceb0d41f04e2b91f lib/POE/Component/Supervisor/Handle/Session.pm
 SHA1 9386610d1854bdf37fe36cab412ae10f56eec47e lib/POE/Component/Supervisor/LogDispatch.pm
 SHA1 88001f0b7916a9c7969f22943462548a8725d16f lib/POE/Component/Supervisor/Supervised.pm
 SHA1 3ae57cf40123295ae8b26dbfb9d4cbf34e60b777 lib/POE/Component/Supervisor/Supervised/Proc.pm
 SHA1 604664b8fcccdbacce4b5a4e3e5d4f92cd56bf15 lib/POE/Component/Supervisor/Supervised/Session.pm
 SHA1 629df3fd4a8c78b3daab7094f84f71387719a01b t/01_load.t
-SHA1 e0007913f8a008ed803e94333a5b5e82983a2573 t/02_basic.t
-SHA1 25b63de929874de3abd6c52464edc02a9ec8c788 t/03_stubborn.t
-SHA1 a37978dd67d05837c35b5a5634edef49a771c0c3 t/04_global_restart_policy.t
+SHA1 c0a2b7dd3245c279f1b9c011fcfeb76337984553 t/02_basic.t
+SHA1 88c0d9ac3d4ac6cb178243c4f837dc30ef28691d t/03_stubborn.t
+SHA1 87d0811609fb7da41a56c5723c30e7392d134a27 t/04_global_restart_policy.t
 SHA1 03c50a97c0e08b68435ba0189868671191458158 t/05_sessions.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.7 (Darwin)
 
-iD8DBQFIUZ8FVCwRwOvSdBgRAlQtAJ9IF6kA0IJLU9xz/n/lB+U5+9aXCwCfezvR
-oma61EyfWYM9qoG7+OtTxio=
-=Pc8x
+iD8DBQFIUtqiVCwRwOvSdBgRAnUnAJ9ktrmpC6cSBoVATQqJGcSL7OajVgCgpAR/
+71TEtcGLokwjYRng9sDCYGk=
+=8W1U
 -----END PGP SIGNATURE-----
