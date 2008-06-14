@@ -28,6 +28,12 @@ has stopped => (
     writer => "_stopped",
 );
 
+has [map { "${_}_callback" } qw(spawned stopped)] => (
+    isa => "CodeRef",
+    is  => "rw",
+    required => 0,
+);
+
 requires "stop";
 
 requires "is_running";
@@ -46,6 +52,10 @@ sub notify_spawn {
     $self->_spawned(1);
 
     $self->notify_supervisor( spawned => @args );
+
+    if ( my $cb = $self->spawned_callback ) {
+        $self->$cb(@args);
+    }
 }
 
 sub notify_stop {
@@ -54,6 +64,10 @@ sub notify_stop {
     $self->_stopped(1);
 
     $self->notify_supervisor( stopped => @args );
+
+    if ( my $cb = $self->stopped_callback ) {
+        $self->$cb(@args);
+    }
 }
 
 __PACKAGE__
@@ -85,6 +99,16 @@ The L<POE::Component::Supervisor> utilizing over this handle.
 =item child
 
 The child descriptor this handle was spawned for.
+
+=item spawned_callback
+
+=item stopped_callback
+
+These callbacks are called as handle methods with the arguments sent to the
+supervisor.
+
+Note that they are not invoked with L<POE>'s calling convention, but rather
+arbitrary arguments from the supervision handle.
 
 =back
 
