@@ -1,10 +1,13 @@
 Changes
 lib/POE/Component/Supervisor.pm
 lib/POE/Component/Supervisor/Handle.pm
+lib/POE/Component/Supervisor/Handle/Interface.pm
 lib/POE/Component/Supervisor/Handle/Proc.pm
 lib/POE/Component/Supervisor/Handle/Session.pm
+lib/POE/Component/Supervisor/Interface.pm
 lib/POE/Component/Supervisor/LogDispatch.pm
 lib/POE/Component/Supervisor/Supervised.pm
+lib/POE/Component/Supervisor/Supervised/Interface.pm
 lib/POE/Component/Supervisor/Supervised/Proc.pm
 lib/POE/Component/Supervisor/Supervised/Session.pm
 Makefile.PL

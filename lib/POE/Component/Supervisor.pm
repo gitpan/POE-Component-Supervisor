@@ -8,14 +8,19 @@ use Moose::Util::TypeConstraints;
 use POE::Component::Supervisor::Supervised;
 use POE::Component::Supervisor::Handle;
 
-our $VERSION = "0.04";
+use Devel::PartialDump;
+
+use Hash::Util::FieldHash::Compat qw(idhash);
+
+use namespace::clean -except => 'meta';
+
+our $VERSION = "0.05";
 
 with qw(
+    POE::Component::Supervisor::Interface
     MooseX::POE::Aliased
     POE::Component::Supervisor::LogDispatch
 );
-
-use Tie::RefHash;
 
 sub run {
     my $self = shift->new(@_);
@@ -33,16 +38,28 @@ has restart_policy => (
 
 has children => (
     isa => "ArrayRef",
+    init_arg => undef,
     is  => "ro",
     auto_deref => 1,
-    required   => 1,
+    default => sub { [] },
 );
+
+has _last_child_id => (
+    isa => "Int",
+    is  => "rw",
+    default => 0,
+);
+
+sub _next_child_id {
+    my $self = shift;
+    $self->_last_child_id( $self->_last_child_id + 1 );
+}
 
 has _children_hash => (
     isa => "HashRef",
     is  => "ro",
     init_arg => undef,
-    default  => sub { tie my %h, 'Tie::RefHash'; \%h },
+    default  => sub { idhash my %h },
 );
 
 sub _child_id {
@@ -51,13 +68,13 @@ sub _child_id {
     if ( defined ( my $id = $self->_children_hash->{$child}{id} ) ) {
         return $id;
     } else {
-        die "unknown child $child";
+        confess "unknown child $child";
     }
 }
 
 sub _child_handle {
     my ( $self, $child ) = @_;
-    $self->_children_hash->{$child}{handle}
+    $self->_children_hash->{$child}{handle};
 }
 
 # used to track which children are currently being stopped for the purpose of
@@ -66,7 +83,7 @@ has _stopping_for_restart => (
     isa => "HashRef",
     is  => "ro",
     init_arg => undef,
-    default  => sub { tie my %h, 'Tie::RefHash'; \%h },
+    default  => sub { idhash my %h },
 );
 
 # when children that are being restarted have stopped they are tracked here
@@ -75,7 +92,7 @@ has _pending_restart => (
     isa => "HashRef",
     is  => "ro",
     init_arg => undef,
-    default  => sub { tie my %h, 'Tie::RefHash'; \%h },
+    default  => sub { idhash my %h },
 );
 
 sub START {
@@ -101,37 +118,32 @@ event exception => sub {
 sub _register_child {
     my ( $self, $new_child ) = @_;
 
-    my $id;
-
-    my $index = 0;
-
-    my $children = $self->children;
-
-    foreach my $child ( @$children ) {
-        $id = $index, last if $child == $new_child;
-    } continue { $index++ }
-
-    unless ( defined $id ) {
-        push @$children, $new_child;
-        $id = $#$children;
+    $self->_children_hash->{$new_child} ||= do {
+        push @{ $self->children }, $new_child;
+        $self->_new_child_registration($new_child);
     }
+}
 
-    # index by 
-    $self->_children_hash->{$new_child} = { id => $id };
+sub _new_child_registration {
+    my ( $self, $new_child ) = @_;
+    return { id => $self->_next_child_id };
 }
 
 sub _unregister_child {
     my ( $self, $child ) = @_;
 
-    @{ $self->children } = grep { $_ != $child } @{ $self->children };
+    if ( delete $self->_children_hash->{$child} ) {
+        @{ $self->children } = grep { $_ != $child } @{ $self->children };
+    }
 
-    delete $self->_children_hash->{$child};
 }
 
 sub BUILD {
     my ( $self, $params ) = @_;
 
-    $self->start($self->children);
+    if ( my $children = $params->{children} ) {
+        $self->start(@$children);
+    }
 }
 
 sub start {
@@ -169,12 +181,22 @@ sub stop {
     }
 }
 
+sub notify_spawned {
+    my ( $self, @args ) = @_;
+    $self->yield( spawned => @args );
+}
+
+sub notify_stopped {
+    my ( $self, @args ) = @_;
+    $self->yield( stopped => @args );
+}
+
 event spawned => sub {
     my ( $self, $kernel, $child, @args ) = @_[OBJECT, KERNEL, ARG0 .. $#_];
 
     $kernel->refcount_increment( $self->get_session_id(), "handles" );
 
-    $self->logger->info("child " . $self->_child_id($child) . " spawned " . join($", map { defined($_) ? $_ : "undef" } @args));
+    $self->logger->info("child " . $self->_child_id($child) . " spawned " . Devel::PartialDump::dump(@args));
 };
 
 event spawn => sub {

@@ -8,10 +8,12 @@ with qw(
     POE::Component::Supervisor::LogDispatch
 );
 
-#use POE::API::Peek;
+use POE::API::Peek;
 
 #use MooseX::Types::Set::Object;
 use Set::Object ();
+
+use namespace::clean -except => 'meta';
 
 has implicit_tracking => (
     isa => "Bool",
@@ -103,15 +105,24 @@ event exception => sub {
 
     $self->logger->debug("tracked sessions: @{ $self->_sessions }");
 
-    my $tracked = $self->_sessions->includes($session);
+    my $sessions = $self->_sessions;
+    my $tracked_session = $session;
 
-    $self->logger->debug( join " ",
-        $session,
-        ( $tracked ? () : "(untracked)" ), #($session == $self->session ? "(self)" : "(untracked)") ),
-        "generated an error: $error"
-    );
+    my $peek = POE::API::Peek->new;
+    until ( $sessions->includes($tracked_session) ) {
+        $tracked_session = $peek->get_session_parent($tracked_session); # FIXME violates POE::Kernel's encapsulation
+    }
 
-    if ( $self->_sessions->includes($session) ) {
+    {
+        no warnings 'uninitialized';
+        $self->logger->warning( join " ",
+            $session,
+            ( $session == $tracked_session ? () : "(untracked)" ),
+            "generated an error: $error"
+        );
+    }
+
+    if ( $tracked_session ) {
         # sig_handled does not keep the child alive, but prevents the kernel from closing
         $kernel->sig_handled;
         $self->_error($error);
@@ -171,9 +182,9 @@ sub stop {
 event stop_tracked_sessions => sub {
     my ( $self, $kernel ) = @_[OBJECT, KERNEL];
 
-    foreach my $session ( $self->_sessions->difference( $self->_dead_sessions )->members ) {
-        $kernel->_data_ses_stop( $session );
-    }
+    my @roots = $self->_sessions->difference( $self->_dead_sessions )->members;
+
+    $kernel->signal( $_ => "KILL" ) for @roots;
 };
 
 sub is_running {
