@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.55.
+signed via the Module::Signature module, version 0.62.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,31 +14,31 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 56bb1d8552dafc18db44b718a6a0f85d783cf287 Changes
+SHA1 9bbc6952cd1b64951c37e6ef5aeeac4820a2300f Changes
 SHA1 3a4417062c93a78d3e129060947b02ddcfa6a525 MANIFEST
 SHA1 190e9058eb9c6446a1a3f3ddf15b082f1ecde152 MANIFEST.SKIP
-SHA1 4433cb339134f0e6f6068cbc20d45ca340b83b6f META.yml
-SHA1 1252d55e30b95102d33dd06664aab2794e30ef6b Makefile.PL
-SHA1 bac56b6ded7f98cdf16468c3bc8063d9dca4f139 lib/POE/Component/Supervisor.pm
+SHA1 23d5456fb81db748a1449c83f668841bfc71bb13 META.yml
+SHA1 6273860520eb7dbe386f11b25d08eedb509443c8 Makefile.PL
+SHA1 688fede42e356aa44852d8a43505d7645eddd9f7 lib/POE/Component/Supervisor.pm
 SHA1 43f3c02c433cac74ada86bdf6e33068a8ae23d37 lib/POE/Component/Supervisor/Handle.pm
 SHA1 da585c8d7bb48677e615d1063d29d731e52c4205 lib/POE/Component/Supervisor/Handle/Interface.pm
-SHA1 bc2d52368015eb3c9aa86be6faea2815ca41fe1b lib/POE/Component/Supervisor/Handle/Proc.pm
-SHA1 acc230265fa991a5eb836760dfd089af5195aff0 lib/POE/Component/Supervisor/Handle/Session.pm
+SHA1 b13d0bcc4e6af2de8cf1358fb9e177a334235dc5 lib/POE/Component/Supervisor/Handle/Proc.pm
+SHA1 b4220c823842e16efd538e305ba7cfd0a3bb66c9 lib/POE/Component/Supervisor/Handle/Session.pm
 SHA1 d2c970cce1b4af24c508cfcdd0e8732919164062 lib/POE/Component/Supervisor/Interface.pm
-SHA1 031199755dea9cf0b1778c92190e00b187929889 lib/POE/Component/Supervisor/LogDispatch.pm
-SHA1 9e5101f6405657fef87906826839421041787fc5 lib/POE/Component/Supervisor/Supervised.pm
+SHA1 b9a97ba5f5c865c0f334b3b3afae37345adfaea1 lib/POE/Component/Supervisor/LogDispatch.pm
+SHA1 7ce74d296c7a73681be92f71bbacd9cbc365d51d lib/POE/Component/Supervisor/Supervised.pm
 SHA1 58c3bc3150707f7c2bbdfcff0029bf58e427a4b7 lib/POE/Component/Supervisor/Supervised/Interface.pm
 SHA1 cff5b3343f7d17a3ba7ddb45cc7266372d91bc45 lib/POE/Component/Supervisor/Supervised/Proc.pm
 SHA1 5057d3e85cbeb8cb5e033dca81a2002e1d64d370 lib/POE/Component/Supervisor/Supervised/Session.pm
 SHA1 629df3fd4a8c78b3daab7094f84f71387719a01b t/01_load.t
-SHA1 2107ea27f819891724ecaed04d630dd6a3ee1b3e t/02_basic.t
+SHA1 673254565f80162aea880b15140c1f540f27f30e t/02_basic.t
 SHA1 32fa0cd22f164afb9d9a36606260f2c1b01b81e5 t/03_stubborn.t
-SHA1 0f50b0bf38fe6c7f477dad0b78d43f2d70b3da08 t/04_global_restart_policy.t
+SHA1 30f507d116329b5ba4df054cb9b367cb13650068 t/04_global_restart_policy.t
 SHA1 d79d4933a755d4a30f1b1dfb87afe395d488b87b t/05_sessions.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.7 (Darwin)
+Version: GnuPG/MacGPG2 v2.0.12 (Darwin)
 
-iD8DBQFIpnDmVCwRwOvSdBgRAlCUAJ0cnnva4M8pH5IuwwK1kzPulbmK6QCgpLjr
-ZPl4k1+AaqRGpBxqAllYFRI=
-=2mLh
+iEYEARECAAYFAkza6SQACgkQVCwRwOvSdBjLbACfc5W7wT8CadRxQUsxod91WAcu
+NeAAn1yzst4ddyMufOBpwd+NSvFzgHJr
+=yiWW
 -----END PGP SIGNATURE-----

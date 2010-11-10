@@ -14,7 +14,7 @@ use Hash::Util::FieldHash::Compat qw(idhash);
 
 use namespace::clean -except => 'meta';
 
-our $VERSION = "0.05";
+our $VERSION = "0.06";
 
 with qw(
     POE::Component::Supervisor::Interface
@@ -42,6 +42,13 @@ has children => (
     is  => "ro",
     auto_deref => 1,
     default => sub { [] },
+);
+
+has _children_tmp => (
+    isa => "ArrayRef",
+    is  => "rw",
+    init_arg => undef,
+    clearer => "_clear_children_tmp",
 );
 
 has _last_child_id => (
@@ -101,6 +108,11 @@ sub START {
     $kernel->sig( DIE => "exception" );
 
     $self->logger->info("starting supervisor $self in process $$");
+
+    if ( my $children = $self->_children_tmp ) {
+        $self->_clear_children_tmp;
+        $self->start(@$children);
+    }
 }
 
 sub STOP {
@@ -118,6 +130,8 @@ event exception => sub {
 sub _register_child {
     my ( $self, $new_child ) = @_;
 
+    $self->logger->debug("registering child $new_child");
+
     $self->_children_hash->{$new_child} ||= do {
         push @{ $self->children }, $new_child;
         $self->_new_child_registration($new_child);
@@ -132,6 +146,8 @@ sub _new_child_registration {
 sub _unregister_child {
     my ( $self, $child ) = @_;
 
+    $self->logger->debug("unregistering child $child");
+
     if ( delete $self->_children_hash->{$child} ) {
         @{ $self->children } = grep { $_ != $child } @{ $self->children };
     }
@@ -142,7 +158,7 @@ sub BUILD {
     my ( $self, $params ) = @_;
 
     if ( my $children = $params->{children} ) {
-        $self->start(@$children);
+        $self->_children_tmp($children);
     }
 }
 
@@ -367,7 +383,7 @@ POE::Component::Supervisor - Erlang inspired babysitting
 
     use POE;
 
-	use POE::Component::Supervisor;
+    use POE::Component::Supervisor;
 
     POE::Component::Supervisor->new(
         children => [
@@ -498,8 +514,8 @@ Yuval Kogman E<lt>yuval.kogman@iinteractive.com<gt>
 
 =head1 COPYRIGHT
 
-	Copyright (c) 2008 Infinity Interactive. All rights reserved
-	This program is free software; you can redistribute
-	it and/or modify it under the same terms as Perl itself.
+    Copyright (c) 2008, 2010 Infinity Interactive, Yuval Kogman. All rights
+    reserved This program is free software; you can redistribute it and/or
+    modify it under the same terms as Perl itself.
 
 =cut
