@@ -20,6 +20,7 @@ WriteMakefile(
         'Set::Object' => 0,
         'Hash::Util::FieldHash::Compat' => 0,
         'namespace::clean' => 0,
+        'Devel::PartialDump' => 0,
 	},
 );
 

@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               POE-Component-Supervisor
-version:            0.06
+version:            0.07
 abstract:           ~
 author:  []
 license:            unknown
@@ -10,6 +10,7 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
+    Devel::PartialDump:   0
     Hash::Util::FieldHash::Compat:  0
     Log::Dispatch::Config::TestLog:  0
     MooseX::LogDispatch:  0

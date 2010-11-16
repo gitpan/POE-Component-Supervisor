@@ -14,12 +14,12 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 9bbc6952cd1b64951c37e6ef5aeeac4820a2300f Changes
+SHA1 a089503935a8300aff03ae312e0d8c16d9d40d64 Changes
 SHA1 3a4417062c93a78d3e129060947b02ddcfa6a525 MANIFEST
 SHA1 190e9058eb9c6446a1a3f3ddf15b082f1ecde152 MANIFEST.SKIP
-SHA1 23d5456fb81db748a1449c83f668841bfc71bb13 META.yml
-SHA1 6273860520eb7dbe386f11b25d08eedb509443c8 Makefile.PL
-SHA1 688fede42e356aa44852d8a43505d7645eddd9f7 lib/POE/Component/Supervisor.pm
+SHA1 f5eb79fdf98c59169f4f703399b04692865da3ed META.yml
+SHA1 2edc8ddc3d4e810bbe362ae867b719d0b4aab37c Makefile.PL
+SHA1 deb36e4e9376217a0ce62246ca352d943b2b8689 lib/POE/Component/Supervisor.pm
 SHA1 43f3c02c433cac74ada86bdf6e33068a8ae23d37 lib/POE/Component/Supervisor/Handle.pm
 SHA1 da585c8d7bb48677e615d1063d29d731e52c4205 lib/POE/Component/Supervisor/Handle/Interface.pm
 SHA1 b13d0bcc4e6af2de8cf1358fb9e177a334235dc5 lib/POE/Component/Supervisor/Handle/Proc.pm
@@ -38,7 +38,7 @@ SHA1 d79d4933a755d4a30f1b1dfb87afe395d488b87b t/05_sessions.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG/MacGPG2 v2.0.12 (Darwin)
 
-iEYEARECAAYFAkza6SQACgkQVCwRwOvSdBjLbACfc5W7wT8CadRxQUsxod91WAcu
-NeAAn1yzst4ddyMufOBpwd+NSvFzgHJr
-=yiWW
+iEYEARECAAYFAkzigwgACgkQVCwRwOvSdBhWNQCeJ2uDZqD7180csvp6s+E6FU3m
+XMMAmwTpj4z9L6cOScnAqifHtQiLYkRH
+=D4/2
 -----END PGP SIGNATURE-----
